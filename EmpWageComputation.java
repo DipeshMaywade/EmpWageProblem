@@ -7,26 +7,29 @@ public class EmpWageComputation {
 		int maxHr = 8;
 		int empHr = 0;
 		int partTimeHr = 4;
+		int workingDays = 20;
+		int totalEmpHr = 0;
 
+		for (int i=0; i<=workingDays; i++){
 		double empCheck = Math.floor(Math.random() * 10) % 3;
 		int empCheck1 = (int)empCheck;
 
 		switch(empCheck1){
 			case 1:
-				System.out.println("Employee is FullTime present");
 	                        empHr = maxHr;
 				break;
 			case 2:
-				System.out.println("Employee is PartTime present");
-                  	  	empHr = partTimeHr;
+                 		empHr = partTimeHr;
 				break;
 			default:
-				System.out.println("Employee is Abscent");
 				empHr = empHr;
 			}
 
-		int dailyWage = empHr*wagePerHr;
-		System.out.println("Employee Daily Wage is: " + dailyWage);
+			totalEmpHr=totalEmpHr+empHr;
+		}
+
+		int monthWage = totalEmpHr*wagePerHr;
+		System.out.println("Employee Month Wage is: " + monthWage);
 
 	}
 
