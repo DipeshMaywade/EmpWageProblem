@@ -5,12 +5,16 @@ public class EmpWageComputation {
 		int isPartTime = 2;
 		int wagePerHr = 20;
 		int maxHr = 8;
+		int maxMonthHr = 100;
 		int empHr = 0;
 		int partTimeHr = 4;
 		int workingDays = 20;
 		int totalEmpHr = 0;
 
-		for (int i=0; i<=workingDays; i++){
+		int hr = 0;
+		int days=0;
+		while (hr<=maxMonthHr && days<=workingDays) {
+
 		double empCheck = Math.floor(Math.random() * 10) % 3;
 		int empCheck1 = (int)empCheck;
 
@@ -26,6 +30,9 @@ public class EmpWageComputation {
 			}
 
 			totalEmpHr=totalEmpHr+empHr;
+
+			hr++;
+			days++;
 		}
 
 		int monthWage = totalEmpHr*wagePerHr;
