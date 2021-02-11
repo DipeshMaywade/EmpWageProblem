@@ -13,7 +13,7 @@ public class EmpWageComputation {
 
 		int hr = 0;
 		int days=0;
-		while (hr<=maxMonthHr && days<=workingDays) {
+		while (empHr<=maxMonthHr && days<=workingDays) {
 
 		double empCheck = Math.floor(Math.random() * 10) % 3;
 		int empCheck1 = (int)empCheck;
@@ -31,7 +31,6 @@ public class EmpWageComputation {
 
 			totalEmpHr=totalEmpHr+empHr;
 
-			hr++;
 			days++;
 		}
 
