@@ -17,7 +17,7 @@ public class EmpWageComputation {
 		partTimeHr = 4;
 	}
 
-	public static void main(String[] args) {
+	public static int computeEmpWage(){
 		int empHr=0;
 		int totalEmpHr=0;
 		int days=0;
@@ -38,15 +38,16 @@ public class EmpWageComputation {
 				default:
 					empHr = 0;
 			}
-
 			totalEmpHr=totalEmpHr+empHr;
-
 			days++;
 		}
-
-		int monthWage = totalEmpHr*wagePerHr;
+		int totalWage = totalEmpHr*wagePerHr;
+		return  totalWage;
+	}
+	public static void main(String[] args) {
+		int monthWage = computeEmpWage();
 		System.out.println("Employee Month Wage is: " + monthWage);
-
 	}
 
 }
+
