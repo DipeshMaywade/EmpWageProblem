@@ -9,21 +9,12 @@ public class EmpWageComputation {
 	private static int fullTimeHr;
 	private static int partTimeHr;
 
-	public EmpWageComputation(){
-		wagePerHr = 20;
-		maxMonthHr = 100;
-		workingDays = 20;
-		fullTimeHr = 8;
-		partTimeHr = 4;
-	}
-
-	public static int computeEmpWage(){
+	public static int EmpWageComputation(int wagePerHr,int maxMonthHr,int workingDays,int fullTimeHr,int partTimeHr){
 		int empHr=0;
 		int totalEmpHr=0;
 		int days=0;
 
-		new EmpWageComputation();
-		while (empHr<= maxMonthHr && days<= workingDays) {
+		while (empHr<=maxMonthHr && days<=workingDays) {
 
 			double empCheck = Math.floor(Math.random() * 10) % 3;
 			int empCheck1 = (int)empCheck;
@@ -45,8 +36,8 @@ public class EmpWageComputation {
 		return  totalWage;
 	}
 	public static void main(String[] args) {
-		int monthWage = computeEmpWage();
-		System.out.println("Employee Month Wage is: " + monthWage);
+		int forCmpny1 = EmpWageComputation(20,100,20,8,4);
+		System.out.println("Employee Month Wage for cmpny1 s: " + forCmpny1);
 	}
 
 }
