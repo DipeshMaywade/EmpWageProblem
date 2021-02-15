@@ -19,7 +19,6 @@ public class EmpWageComputation {
 		this.partTimeHr = partTimeHr;
 
 	}
-
 	public void companyWage(){
 		int empHr=0;
 		int totalEmpHr=0;
