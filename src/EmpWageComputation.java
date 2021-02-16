@@ -1,5 +1,7 @@
 package src;
 
+import java.util.Scanner;
+
 class CompnyWage {
 
     public String company;
@@ -8,6 +10,7 @@ class CompnyWage {
     public int workingDays;
     public int fullTimeHr;
     public int partTimeHr;
+    public int totalEmpWage;
 
     public CompnyWage(String company, int wagePerHr, int maxMonthHr, int workingDays, int fullTimeHr, int partTimeHr) {
         this.company = company;
@@ -17,28 +20,41 @@ class CompnyWage {
         this.fullTimeHr = fullTimeHr;
         this.partTimeHr = partTimeHr;
     }
+
+    public void setTotalEmpWage(int totalEmpWage) {
+        this.totalEmpWage = totalEmpWage;
+    }
+
+    public String toString() {
+        return "Total Emp Wage For Company: " + company + " is " + totalEmpWage;
+    }
 }
 
-class EmpWageArry {
+class EmpWageMain {
     private static final int IS_FULL_TIME = 1;
     private static final int IS_PART_TIME = 2;
 
-    private int numOfCmpny=0;
-    private CompnyWage[] compnyWageArray;
+    public int numOfCmpny=0;
+    public CompnyWage[] compnyWageArray;
 
-    public EmpWageArry(){
-        compnyWageArray = new CompnyWage[5];
+    public EmpWageMain(int a){
+        compnyWageArray = new CompnyWage[a];
     }
+
 
     public void addCompanyEmpWage(String company, int wagePerHr, int maxMonthHr, int workingDays, int fullTimeHr, int partTimeHr) {
         compnyWageArray[numOfCmpny] = new CompnyWage(company,wagePerHr,maxMonthHr,workingDays,fullTimeHr,partTimeHr);
-        computeEmpWage(compnyWageArray[numOfCmpny].company, compnyWageArray[numOfCmpny].wagePerHr
-                ,compnyWageArray[numOfCmpny].maxMonthHr ,compnyWageArray[numOfCmpny].workingDays
-                ,compnyWageArray[numOfCmpny].fullTimeHr,compnyWageArray[numOfCmpny].partTimeHr);
         numOfCmpny++;
     }
 
-    public static void computeEmpWage(String company, int wagePerHr, int maxMonthHr, int workingDays, int fullTimeHr, int partTimeHr){
+    public void computeEmpWage(){
+        for (int i=0; i<numOfCmpny; i++){
+            compnyWageArray[i].setTotalEmpWage(computeEmpWage(compnyWageArray[i].company,compnyWageArray[i].wagePerHr,compnyWageArray[i].maxMonthHr,compnyWageArray[i].workingDays,compnyWageArray[i].fullTimeHr,compnyWageArray[i].partTimeHr));
+            System.out.println(compnyWageArray[i]);
+        }
+    }
+
+    public static int computeEmpWage(String company, int wagePerHr, int maxMonthHr, int workingDays, int fullTimeHr, int partTimeHr){
         int empHr = 0;
         int totalEmpHr = 0;
         int days = 0;
@@ -62,13 +78,36 @@ class EmpWageArry {
             days++;
         }
         int totalWage = totalEmpHr * wagePerHr;
-        System.out.println("Total Wage For " + company + " Company Employee Is " + totalWage);
+        return totalWage;
     }
-}
-public class EmpWageComputation {
+
+
     public static void main(String[] args) {
-        EmpWageArry obj = new EmpWageArry();
-        obj.addCompanyEmpWage("TCS", 10, 50, 20, 8, 4);
-        obj.addCompanyEmpWage("D-mart", 20, 50, 20, 6, 3);
+        Scanner sc = new Scanner(System.in);
+        System.out.println("How Many Company U Want");
+        int cmpnysCount = sc.nextInt();
+        EmpWageMain obj = new EmpWageMain(cmpnysCount);
+        for (int i = 0; i < cmpnysCount; i++) {
+            System.out.println("Enter Details for Company: "+ (i+1));
+            System.out.println("===================================");
+            System.out.println("Cmpny Name: " );
+            String cmpnyName = sc.next();
+            System.out.println("Cmpny Wage Per Hour");
+            int wagePerHr = sc.nextInt();
+            System.out.println("Cmpny Max Month Hour");
+            int maxMonthHr = sc.nextInt();
+            System.out.println("Cmpny Month Work Days");
+            int workDays = sc.nextInt();
+            System.out.println("Cmpny Full Time Hour");
+            int fullTimeHr = sc.nextInt();
+            System.out.println("Cmpny Part Time Hour ");
+            int partTimeHr = sc.nextInt();
+
+            obj.addCompanyEmpWage(cmpnyName,wagePerHr,maxMonthHr,workDays,fullTimeHr,partTimeHr);
+            obj.computeEmpWage();
+        }
+        for (int i=0; i<cmpnysCount; i++){
+            System.out.println(obj.compnyWageArray);
+        }
     }
 }
